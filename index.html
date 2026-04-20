@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Ателье ИИ-агентов · B2B · Зовём пилить вместе</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0e14;
+      font-family: "Inter", sans-serif;
+      color: #eef2fb;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 3rem;
+    }
+
+    /* DETROIT / FUTURISTIC ACCENTS */
+    .glow {
+      background: linear-gradient(135deg, #a0e9ff 0%, #c1f2ff 40%, #7fc9ff 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(0, 255, 255, 0.08);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      color: #b3eaff;
+      margin-bottom: 1.2rem;
+    }
+
+    .card {
+      background: rgba(18, 25, 35, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(100, 210, 255, 0.1);
+      border-radius: 32px;
+      padding: 2rem;
+      box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6), 0 0 0 1px rgba(0, 180, 255, 0.05) inset;
+      transition: transform 0.2s ease, border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: rgba(0, 200, 255, 0.3);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1.8rem;
+    }
+
+    .stat-number {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #9dd9ff;
+      line-height: 1;
+    }
+
+    .pill {
+      background: #101a26;
+      border-radius: 40px;
+      padding: 0.5rem 1.4rem;
+      border: 1px solid #2a3a50;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+
+    .architecture-layer {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .layer-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: #0f1822;
+      padding: 0.8rem 1.2rem;
+      border-radius: 20px;
+      border-left: 5px solid;
+    }
+
+    .layer-1 { border-left-color: #3bc9db; }
+    .layer-2 { border-left-color: #748ffc; }
+    .layer-3 { border-left-color: #20c997; }
+
+    .cta-block {
+      margin-top: 3.5rem;
+      text-align: center;
+      background: linear-gradient(145deg, #0f1a26, #050a10);
+      border-radius: 48px;
+      padding: 3.5rem 2rem;
+      border: 1px solid #2c445e;
+      box-shadow: 0 0 30px rgba(0,180,255,0.1);
+    }
+
+    .btn {
+      display: inline-block;
+      background: white;
+      color: #0b0e14;
+      font-weight: 700;
+      font-size: 1.2rem;
+      padding: 1rem 3rem;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+      letter-spacing: -0.01em;
+      margin-top: 1rem;
+    }
+
+    .btn i {
+      margin-right: 8px;
+      color: #0f1a2b;
+    }
+
+    .btn:hover {
+      background: #d4edff;
+      transform: scale(1.02);
+      box-shadow: 0 0 25px #4ab7ff66;
+    }
+
+    .agent-icon {
+      font-size: 1.8rem;
+      color: #7fc9ff;
+      margin-right: 10px;
+    }
+
+    hr {
+      border: 0.5px solid #253544;
+      margin: 2rem 0;
+    }
+
+    .quote {
+      font-style: italic;
+      border-left: 3px solid #2f9ef0;
+      padding-left: 1.5rem;
+      color: #bac8dc;
+    }
+
+    /* mobile */
+    @media (max-width: 700px) {
+      h1 { font-size: 2.5rem; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .page { padding: 1.5rem 1rem; }
+      .card { padding: 1.5rem; }
+      .cta-block { padding: 2rem 1.2rem; }
+    }
+
+    /* detroit details */
+    .typing-demo {
+      font-family: monospace;
+      background: #0a121c;
+      padding: 0.1rem 0.6rem;
+      border-radius: 12px;
+      border: 1px solid #2b465e;
+    }
+
+    .neon-border {
+      border: 1px solid rgba(0, 230, 250, 0.25);
+    }
+
+    .footer-note {
+      margin-top: 2rem;
+      opacity: 0.7;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header + Detroit vibe -->
+  <div style="margin-bottom: 2.5rem;">
+    <div class="badge">
+      <i class="fas fa-robot" style="margin-right: 6px;"></i> AGENTIC AI · Q2 2026 · ПИК ХАЙПА
+    </div>
+    <h1>
+      <span class="glow">Ателье</span> ИИ-агентов<br>для среднего и крупного B2B
+    </h1>
+    <div style="font-size: 1.2rem; max-width: 700px; color: #b0c7e3;">
+      Новый тип ИТ‑интегратора на волне четвёртой промышленной революции. 
+      Не просто консалтинг — мы разворачиваем цифровых сотрудников, которые заменяют целые отделы.
+    </div>
+  </div>
+
+  <!-- ПОЧЕМУ СРАБОТАЕТ: 4 столпа -->
+  <div class="grid-2" style="margin-bottom: 2.5rem;">
+    <div class="card">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+        <span style="font-size: 2.5rem;">📈</span> <h3 style="margin:0;">Рынок на взлёте</h3>
+      </div>
+      <div class="stat-number">$200 млрд</div>
+      <div style="margin-bottom: 1rem;">прогноз BCG на сервисы внедрения агентного ИИ в ближайшие 5 лет</div>
+      <div class="pill"><i class="fas fa-chart-line" style="margin-right: 6px;"></i>Gartner: Пик завышенных ожиданий — окно 1-2 года</div>
+    </div>
+    <div class="card">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+        <span style="font-size: 2.5rem;">🎯</span> <h3 style="margin:0;">B2B — идеальный клиент</h3>
+      </div>
+      <p style="margin-bottom: 1.2rem;"><strong>43%</strong> средних/крупных компаний вынуждены внедрять ИИ, но не имеют своих спецов. Enterprise сделает сам, B2C отдадут корпорациям. <strong>B2B — наш хлеб</strong>.</p>
+      <div style="background: #0c1a26; border-radius: 20px; padding: 0.8rem 1.2rem;">
+        <i class="fas fa-building" style="margin-right: 8px; color: #7fc9ff;"></i>  
+        Клиенты уже ищут: HR, юристы, техподдержка, документооборот.
+      </div>
+    </div>
+    <div class="card">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+        <span style="font-size: 2.5rem;">💰</span> <h3 style="margin:0;">Низкий порог входа</h3>
+      </div>
+      <p>Open Source стек + серверы от 5-7 тыс ₽/мес. Два человека в «подвале» могут построить бизнес с оборотом 50-100 млн ₽/год.</p>
+      <div style="margin-top: 1.2rem;">
+        <span class="pill"><i class="fa-brands fa-uncharted"></i> OpenClaw / NullClaw</span>
+        <span class="pill"><i class="fa-solid fa-cloud"></i> Cloud.ru / VK Cloud</span>
+      </div>
+    </div>
+    <div class="card">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+        <span style="font-size: 2.5rem;">🔐</span> <h3 style="margin:0;">Ниша свободна</h3>
+      </div>
+      <p>Рынок фрагментирован, явного лидера нет. Гиганты идут в Enterprise, а малый/средний B2B-бизнес — <strong>наше окно возможностей</strong>.</p>
+      <div style="margin-top: 1.2rem; color: #aad0ff;">
+        <i class="fa-regular fa-clock"></i> Время входа — сейчас.
+      </div>
+    </div>
+  </div>
+
+  <!-- КАК ЭТО РАБОТАЕТ ТЕХНИЧЕСКИ -->
+  <h2 style="display: flex; gap: 10px;"><i class="fas fa-microchip"></i> Архитектура · open source first</h2>
+  <div class="grid-2" style="margin-bottom: 2rem;">
+    <div class="card">
+      <div class="architecture-layer">
+        <div class="layer-item layer-1">
+          <i class="fas fa-comment-dots agent-icon"></i>
+          <div><strong>Интерфейсный слой</strong><br><span style="font-size: 0.9rem; opacity: 0.8;">Чат-бот, голос, мессенджеры, виджеты. Как Detroit, только функционально.</span></div>
+        </div>
+        <div class="layer-item layer-2">
+          <i class="fas fa-database agent-icon"></i>
+          <div><strong>Агрегатор данных (RAG)</strong><br><span style="font-size: 0.9rem; opacity: 0.8;">Собирает контекст: Wiki, регламенты, 1С, CRM, почта.</span></div>
+        </div>
+        <div class="layer-item layer-3">
+          <i class="fas fa-robot agent-icon"></i>
+          <div><strong>Исполнитель (нажиматель кнопок)</strong><br><span style="font-size: 0.9rem; opacity: 0.8;">Агент выполняет действия: создаёт сделку, отправляет документ, обновляет статус.</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-cubes" style="margin-right: 8px;"></i> Стек</h3>
+      <ul style="list-style: none; margin-top: 1rem;">
+        <li style="padding: 0.4rem 0;">✓ <strong>OpenClaw / NullClaw</strong> — ядро агентов (до 1 МБ памяти)</li>
+        <li style="padding: 0.4rem 0;">✓ <strong>OpenCognit / Mission Control</strong> — оркестрация, RBAC, Critic Loop</li>
+        <li style="padding: 0.4rem 0;">✓ <strong>Self‑hosted LLM</strong> или облачные API (Cloud.ru, Together, Grok)</li>
+        <li style="padding: 0.4rem 0;">✓ <strong>Интеграции:</strong> готовые коннекторы к Битрикс24, amoCRM, 1С, Telegram</li>
+      </ul>
+      <div style="margin-top: 1.5rem; background: #0f1f2c; border-radius: 18px; padding: 1rem;">
+        <i class="fa-regular fa-lightbulb"></i> <strong>Фишка:</strong> внедрение делают наши же ИИ‑агенты. Мы — продавцы машин, которые сами ездят на своих машинах.
+      </div>
+    </div>
+  </div>
+
+  <!-- ПРОДАЖА КАК ДЕМОНСТРАЦИЯ -->
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <div style="display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
+      <div style="min-width: 60px;"><span style="font-size: 3rem;">🎙️</span></div>
+      <div>
+        <h3 style="margin-bottom: 0.5rem;">Лендос в стиле Detroit: Become Human</h3>
+        <p style="font-size: 1.1rem;">Клиент заходит на сайт — его встречает ИИ‑консультант (голос/текст). Квалифицирует боль, прикидывает смету и ставит встречу. <strong>Процесс продажи = демонстрация продукта.</strong></p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1.5rem;">
+          <span class="pill"><i class="fa-regular fa-message"></i> Мгновенный расчёт</span>
+          <span class="pill"><i class="fa-regular fa-calendar"></i> Автозапись на созвон</span>
+          <span class="pill"><i class="fa-solid fa-chart-pie"></i> ROI за минуту</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКОНОМИКА И МОНЕТИЗАЦИЯ -->
+  <div class="grid-2" style="margin-bottom: 2.5rem;">
+    <div class="card">
+      <h3>🧾 Экономика «купи-продай»</h3>
+      <table style="width:100%; border-collapse: collapse; margin-top: 1.2rem;">
+        <tr><td style="padding: 10px 0; border-bottom: 1px solid #2a3a50;">Подписка на агента (замена 2-3 FTE)</td><td style="text-align: right;"><strong>150–300 тыс ₽/мес</strong></td></tr>
+        <tr><td style="padding: 10px 0; border-bottom: 1px solid #2a3a50;">Оптовые сервера + токены</td><td style="text-align: right;">~30–50% от лимита</td></tr>
+        <tr><td style="padding: 10px 0;">Заработок на асимметрии информации</td><td style="text-align: right;"><span class="glow">маржа >50%</span></td></tr>
+      </table>
+      <p style="margin-top: 1.5rem;"><i class="fa-regular fa-gem"></i> Клиент доволен мощным решением, мы — разницей в цене и экспертизе.</p>
+    </div>
+    <div class="card">
+      <h3>📊 Эволюция монетизации</h3>
+      <ol style="margin-left: 1.2rem; margin-top: 0.5rem; list-style-type: decimal; font-weight: 400;">
+        <li style="margin-bottom: 10px;"><strong>По объёму</strong> — наценка на токены (старт)</li>
+        <li style="margin-bottom: 10px;"><strong>По процессу</strong> — фикс за обработку 1000 заявок</li>
+        <li style="margin-bottom: 10px;"><strong>По результату</strong> — % от закрытых сделок / KPI</li>
+        <li><strong>AI как сотрудник</strong> — подписка 2000$/мес вместо 7000$ за человека</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ПРИЗЫВ К ДЕЙСТВИЮ (без "кого ищу") -->
+  <div class="cta-block">
+    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🤖 + 🧠</div>
+    <h2 style="font-size: 2.2rem; margin-bottom: 0.8rem;">Го пилить стартап вместе</h2>
+    <p style="max-width: 600px; margin: 0 auto 1.8rem; color: #cadcff;">
+      У нас есть архитектура, понимание рынка и живой прототип. 
+      Нужны руки и голова, чтобы превратить это в бизнес с оборотом 50–100 млн. 
+      Рынок ждать не будет.
+    </p>
+    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+      <a href="#" class="btn"><i class="fa-regular fa-calendar-check"></i> Обсудить за 30 минут</a>
+    </div>
+    <div style="margin-top: 2.5rem; display: flex; justify-content: center; gap: 30px; color: #9bb7dd;">
+      <div><i class="fa-regular fa-file-lines"></i> Ван‑пейджер</div>
+      <div><i class="fa-regular fa-clock"></i> 2026 · Q2</div>
+      <div><i class="fa-solid fa-bolt"></i> open source first</div>
+    </div>
+  </div>
+
+  <!-- Контакты / детали -->
+  <hr>
+  <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+    <div class="typing-demo"><i class="fa-regular fa-envelope"></i> base@agent-atelier.tech</div>
+    <div class="typing-demo"><i class="fa-brands fa-telegram"></i> @agent_atelier_bot</div>
+    <div class="typing-demo"><i class="fa-solid fa-microchip"></i> OpenClaw · NullClaw ready</div>
+  </div>
+  <div class="footer-note">
+    Detroit: Become Human vibe · 2026
+  </div>
+</div>
+
+<!-- Небольшая интерактивная заглушка (для кнопки) -->
+<script>
+  document.querySelector('.btn')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    alert('🔥 Отлично! Покажи этот лендинг коллеге и договорись о встрече.\nДальше — пилот и первые клиенты.');
+  });
+</script>
+</body>
+</html>
